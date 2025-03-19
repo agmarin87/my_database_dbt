@@ -1,1 +1,2 @@
 Project that contains the basic data ingestion and transformations with DBT
+The folder my_database_scheduler has been created thanks to dagster which is used as an scheduler. Library used is dagster-dbt
