@@ -40,7 +40,7 @@ models:
         data_tests:
           - not_null
 
-  - name: dim_orders
+  - name: fact_orders
     description: "orders data from the source system"
     columns:
       - name: order_id
@@ -62,6 +62,26 @@ models:
           - not_null
       - name: order_date
         description: "date of the order"
+        data_tests:
+          - not_null
+      - name: customer_location_id
+        description: "foreign key to location table"
+        data_tests:
+          - not_null
+      - name: customer_name
+        description: "name of the customer"
+        data_tests:
+          - not_null
+      - name: customer_address
+        description: "address of the customer"
+        data_tests:
+          - not_null
+      - name: customer_phone_number
+        description: "phone number of the customer"
+        data_tests:
+          - not_null
+      - name: customer_country_name
+        description: "name of the country"
         data_tests:
           - not_null
 
