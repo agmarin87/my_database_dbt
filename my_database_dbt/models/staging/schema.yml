@@ -64,4 +64,8 @@ models:
         description: "date of the order"
         data_tests:
           - not_null
+      - name: product
+        description: "name of the product purchased"
+        data_tests:
+          - not_null
 

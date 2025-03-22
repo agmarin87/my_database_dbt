@@ -9,5 +9,6 @@ The folder my_database_scheduler has been created thanks to dagster which is use
 The file dev.duckdb is the database itself that contains the data already loaded.
 
 The Star Schema comprises 2 dimensions (dim_customers and dim_locations) and 1 fact table (fact_orders) where the orders information is stored. The fact table joins the data from the dimensions, making it ready for consumption by any BI tool (see image below).
+There is an extra dimension (dim_products). This dimension is created to have a unique list of products available from all the orders. A surrogate key is generated as a primary key.
 
 ![alt text](warehouse_layers.png)

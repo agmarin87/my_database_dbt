@@ -40,6 +40,19 @@ models:
         data_tests:
           - not_null
 
+  - name: dim_products
+    description: "product data from the source system"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: product
+        description: "name of the product"
+        data_tests:
+          - not_null
+
   - name: fact_orders
     description: "orders data from the source system"
     columns:
