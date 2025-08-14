@@ -10,17 +10,22 @@
 
 with orders as (
 
-    select order_id
-    ,customer_id
-    ,product
-    ,quantity
-    ,price
-    ,order_date
-    from {{ ref('stg_orders') }}
+    select stg_orders.order_id
+    ,stg_orders.customer_name
+    ,customers.customer_id -- Using stg_orders.customer_name to join with dim_customers and bring in customer_id.
+    ,stg_orders.product
+    ,products.product_id as product_id -- Using stg_orders.product to join with dim_products and bring in product_id.
+    ,stg_orders.quantity
+    ,stg_orders.price
+    ,stg_orders.order_date
+    from {{ ref('stg_orders') }} stg_orders
+    left join {{ ref('dim_customers') }} as customers on stg_orders.customer_name = customers.name
+    left join {{ ref('dim_products') }} as products on stg_orders.product = products.product_name
 )
 
 select orders.order_id as order_id
     ,orders.customer_id as customer_id
+    ,orders.product_id as product_id
     ,orders.product as product
     ,orders.quantity as quantity
     ,orders.price as price
@@ -33,7 +38,4 @@ select orders.order_id as order_id
 from orders
 left join {{ ref('dim_customers') }} as customers on orders.customer_id = customers.customer_id
 left join {{ ref('dim_locations') }} as locations on customers.location_id = locations.location_id
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
+left join {{ ref('dim_products') }} as products on orders.product_id = products.product_id

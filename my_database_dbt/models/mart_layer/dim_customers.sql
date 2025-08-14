@@ -10,7 +10,7 @@
 
 with customers as (
 
-    select customer_id
+    select {{ dbt_utils.generate_surrogate_key(['name']) }} as customer_id
     ,name
     ,location_id
     ,address
@@ -19,7 +19,3 @@ with customers as (
 )
 
 select * from customers
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/

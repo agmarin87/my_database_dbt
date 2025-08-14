@@ -2,8 +2,10 @@
 version: 2
 
 models:
-  - name: stg_customers
+  - name: dim_customers
     description: "Customer data from the source system"
+    docs:
+      node_color: green
     columns:
       - name: customer_id
         description: "The primary key for this table"
@@ -27,8 +29,10 @@ models:
         data_tests:
           - not_null  
 
-  - name: stg_locations
+  - name: dim_locations
     description: "location data from the source system"
+    docs:
+      node_color: green
     columns:
       - name: location_id
         description: "The primary key for this table"
@@ -40,8 +44,25 @@ models:
         data_tests:
           - not_null
 
-  - name: stg_orders
+  - name: dim_products
+    description: "product data from the source system"
+    docs:
+      node_color: green
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "name of the country"
+        data_tests:
+          - not_null
+
+  - name: fact_orders
     description: "orders data from the source system"
+    docs:
+      node_color: black
     columns:
       - name: order_id
         description: "The primary key for this table"
@@ -50,6 +71,10 @@ models:
           - not_null
       - name: customer_id
         description: "foreign key to customer table"
+        data_tests:
+          - not_null
+      - name: product_id
+        description: "foreign key to product table"
         data_tests:
           - not_null
       - name: quantity
@@ -64,8 +89,24 @@ models:
         description: "date of the order"
         data_tests:
           - not_null
-      - name: product
-        description: "name of the product purchased"
+      - name: customer_location_id
+        description: "foreign key to location table"
+        data_tests:
+          - not_null
+      - name: customer_name
+        description: "name of the customer"
+        data_tests:
+          - not_null
+      - name: customer_address
+        description: "address of the customer"
+        data_tests:
+          - not_null
+      - name: customer_phone_number
+        description: "phone number of the customer"
+        data_tests:
+          - not_null
+      - name: customer_country_name
+        description: "name of the country"
         data_tests:
           - not_null
 

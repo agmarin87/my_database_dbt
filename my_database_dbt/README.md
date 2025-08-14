@@ -1,8 +1,8 @@
 Project that contains the basic data ingestion and transformations with DBT.
 
-The folder seeds contains the excel files that serve as data source. They are being loaded into the Staging Layer (first layer of the warehouse), and then to the Access Layer (where the Star Schema is created). 
+The folder seeds contains the excel files that serve as data source. They are being loaded into the Staging Layer (first layer of the warehouse), and then to the Mart Layer (where the Star Schema is created). 
 
-The folder model contains 2 folders, one per each layer (Staging Layer and Access Layer). Each of these folders contain the SQL script to create the tables and load the data into these layers. They also contain the schema.yml files that define each layer, table and attribute. There, basic tests are also defined (mostly to check if attributes are fully NULL or not).
+The folder model contains 2 folders, one per each layer. Each of these folders contain the SQL script to create the tables and load the data into these layers. They also contain the schema.yml files that define each layer, table and attribute. There, basic tests are also defined (mostly to check if attributes are fully NULL or not).
 
 The folder my_database_scheduler has been created thanks to dagster which is used as an scheduler. Library used is dagster-dbt.
 

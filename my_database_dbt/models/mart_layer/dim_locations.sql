@@ -16,7 +16,3 @@ with locations as (
 )
 
 select * from locations
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
